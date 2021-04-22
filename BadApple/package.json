@@ -1,0 +1,19 @@
+{
+  "name": "bad-apple",
+  "version": "1.0.0",
+  "description": "A fun little application playing 'Bad Apple' in the console.",
+  "main": "src/run.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "author": "Michael E. / GitThirteen",
+  "license": "CC0-1.0",
+  "dependencies": {
+    "gif-frames": "^1.0.1",
+    "image-decode": "^1.2.2",
+    "sound-play": "^1.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.37"
+  }
+}
