@@ -1,0 +1,9 @@
+src\exceptions\FolderIsEmptyException.java
+src\exceptions\InvalidPathException.java
+src\run\Image.java
+src\run\Bucket.java
+src\run\Histogram.java
+src\run\Config.java
+src\run\Collector.java
+src\run\ProgressBar.java
+src\run\Run.java
