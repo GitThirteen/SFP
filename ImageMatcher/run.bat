@@ -1,13 +1,22 @@
-javac @FilesList.txt -d out
-@ECHO ========== ATTENTION! ==========
+@ECHO off
+ECHO Creating executable .jar file...
+ECHO.
+JAVAC @FilesList.txt -d out
+MKDIR temp
+XCOPY MANIFEST.MF temp\*
+XCOPY /s out\* temp\*
+CD temp
+JAR cvfm App.jar MANIFEST.MF exceptions\*.class run\*.class
+XCOPY App.jar ..\*
+CD ..
+RMDIR /s /q temp
 
-@ECHO Create a copy of your images before running this program.
-@ECHO There have been rare occurrences of image corruption if
-@ECHO the folder containing the images is connected to a cloud service.
-@ECHO (e.g. Google Drive, etc.)
-
-@ECHO ================================
-ping 127.0.0.1 -n 11 > nul
-cls
-java -cp C:\Users\Michi\Desktop\Thirteen\Coding\SFP\ImageMatcher\out run.Run
+ECHO.
+ECHO.
+ECHO.
+ECHO.
+ECHO.
+ECHO.
+ECHO == SUCCESSFULLY FINISHED COMPILING ==
+ECHO Execute 'App.jar' to run the program.
 pause

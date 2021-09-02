@@ -10,7 +10,7 @@ public final class Config {
      * The ABSOLUTE path to your image folder.
      * (E.g.: C:/Users/User/Desktop/MyImagesToCompare)
      */
-    public static final String FOLDER_PATH = "ENTER FOLDER PATH HERE";
+    public static final String FOLDER_PATH = "C:\\Users\\Michi\\Desktop\\Homework\\Fate";
 
     /**
      * The function used to compare images. It is highly suggested to
@@ -41,6 +41,13 @@ public final class Config {
      * if you do: Bigger integer = Bigger precision = Bigger computing time.
      */
     public static final int HISTOGRAM_SIZE = 2048;
+
+    /**
+     * RECOMMENDED: True
+     * Toggles whether a warning message appears before program execution.
+     * Disable with caution.
+     */
+    public static final boolean SHOW_WARNING = true;
 
     /* >>>>>> IGNORE FROM HERE <<<<<< */
 

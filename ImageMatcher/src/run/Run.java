@@ -11,6 +11,22 @@ import java.util.Map;
 
 public class Run {
     public static void main(String[] args) {
+        if (Config.SHOW_WARNING) {
+            System.out.println("========== ATTENTION! ==========\n");
+            System.out.println("Create a copy of your images before running this program.");
+            System.out.println("There have been rare occurrences of image corruption if");
+            System.out.println("the folder containing the images is connected to a cloud service.");
+            System.out.println("(e.g. Google Drive, etc.)\n");
+            System.out.println("================================");
+            System.out.println("Running comparison in 10 seconds...");
+
+            try {
+                Thread.sleep(10000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
         Matcher matcher = new Matcher();
         new Thread(matcher).start();
     }
