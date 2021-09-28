@@ -19,4 +19,5 @@ ECHO.
 ECHO.
 ECHO == SUCCESSFULLY FINISHED COMPILING ==
 ECHO Execute 'App.jar' to run the program.
+java -jar App.jar
 pause

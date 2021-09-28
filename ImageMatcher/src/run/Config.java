@@ -10,7 +10,7 @@ public final class Config {
      * The ABSOLUTE path to your image folder.
      * (E.g.: C:/Users/User/Desktop/MyImagesToCompare)
      */
-    public static final String FOLDER_PATH = "C:\\Users\\Michi\\Desktop\\Homework\\Fate";
+    public static final String FOLDER_PATH = "ENTER FOLDER PATH HERE";
 
     /**
      * The function used to compare images. It is highly suggested to
@@ -25,14 +25,14 @@ public final class Config {
      * Reducing the width might result in a performance boost, but
      * if you're unsure, leave it as is.
      */
-    public static final int RESIZE_WIDTH = 1080;
+    public static final int RESIZE_WIDTH = 256;
 
     /**
      * The height the images get resized to for later comparison.
      * Reducing the height might result in a performance boost, but
      * if you're unsure, leave it as is.
      */
-    public static final int RESIZE_HEIGHT = 720;
+    public static final int RESIZE_HEIGHT = 256;
 
     /**
      * The amount of values saved in the generated histograms (given
