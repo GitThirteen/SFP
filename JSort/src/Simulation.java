@@ -8,7 +8,7 @@ import java.util.Map;
 public class Simulation {
     private static final int CANVAS_WIDTH = 750;
     private static final int CANVAS_HEIGHT = 750;
-    private static final int LENGTH = 100;
+    private static final int LENGTH = 5000;
     private static final Algorithms ALGORITHM = Algorithms.InsertionSort;
 
     private static final EnumMap<Algorithms, Algorithm> algorithmMap = new EnumMap<>(Algorithms.class);
@@ -29,7 +29,7 @@ public class Simulation {
             canvas.draw();
         }
 
-        System.out.println(Arrays.toString(algorithm.getArray()));*/
+        System.out.println(Arrays.toString(algorithm.getArray()));
     }
 
     private static void addAllAlgorithms() {
