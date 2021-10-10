@@ -6,13 +6,13 @@
 
 int main() {
 	Board mineField;
-	mineField.generate(Difficulty::Beginner);
+	mineField.generate(Difficulty::Intermediate);
 
 	auto matrix = mineField.getMatrix();
-	for (int x = 0; x < matrix.getWidth(); x++) {
-		for (int y = 0; y < matrix.getHeight(); y++) {
-			std::cout << matrix.getBoard()[x][y] << " ";
-		}
+	for (int col = 0; col < matrix.getHeight(); col++) {
+		for (int row = 0; row < matrix.getWidth(); row++) {
+			std::cout << matrix.getBoard()[col][row] << " ";
+		};
 		std::cout << "\n";
 	}
 }

@@ -8,15 +8,36 @@ using Mat2D = std::vector<std::vector<T>>;
 template<typename T>
 class Matrix {
 public:
-	Matrix<T>();
-	Matrix<T>(int, int);
+	Matrix<T>() {
+		Mat2D<T> matrix(0, std::vector<T>(0, 0));
+		this->board = matrix;
+	}
 
-	int getWidth();
-	int getHeight();
-	void setBoard(Mat2D<T>);
-	void setBoard(int, int);
-	Mat2D<T> getBoard();
+	Matrix<T>(int width, int height) {
+		Mat2D<T> matrix(width, std::vector<T>(height, 0));
+		this->board = matrix;
+	}
 
+	int getWidth() {
+		return this->board[0].size();
+	}
+
+	int getHeight() {
+		return this->board.size();
+	}
+
+	void setBoard(Mat2D<T> board) {
+		this->board = board;
+	}
+
+	void setBoard(int x, int y) {
+		Mat2D<T> matrix(x, std::vector<T>(y, 0));
+		this->board = matrix;
+	}
+
+	Mat2D<T> getBoard() {
+		return board;
+	}
 private:
 	Mat2D<T> board;
 };
