@@ -14,7 +14,7 @@ public:
 	}
 
 	Matrix<T>(int width, int height) {
-		Mat2D<T> matrix(width, std::vector<T>(height, 0));
+		Mat2D<T> matrix(height, std::vector<T>(width, 0));
 		this->board = matrix;
 	}
 
@@ -31,7 +31,7 @@ public:
 	}
 
 	void setBoard(int x, int y) {
-		Mat2D<T> matrix(x, std::vector<T>(y, 0));
+		Mat2D<T> matrix(y, std::vector<T>(x, 0));
 		this->board = matrix;
 	}
 

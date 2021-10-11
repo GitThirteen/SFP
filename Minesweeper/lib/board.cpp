@@ -13,6 +13,10 @@ typedef std::pair<int, int> intPair;
 Board::Board() { }
 
 Difficulty Board::getDiff() {
+	if (diff < Difficulty::Beginner || diff > Difficulty::Expert) {
+		return Difficulty::Invalid;
+	}
+
 	return diff;
 }
 
@@ -29,6 +33,12 @@ void Board::setMines(int mines) {
 }
 
 void Board::generate(Difficulty diff) {
+	if (diff == Difficulty::Invalid) {
+		std::string error = "Difficulty cannot be set to \"Invalid\"!";
+		std::cerr << error << std::endl;
+		throw new std::invalid_argument(error);
+	}
+
 	Matrix<int> matrix;
 	int mines = 0;
 
@@ -54,6 +64,20 @@ void Board::generate(Difficulty diff) {
 	this->fill();
 }
 
+void Board::generate(int width, int height, int mines) {
+	if (mines >= (width * height)) {
+		std::string error = "Mines greater or equal board size.";
+		std::cerr << error << std::endl;
+		throw new std::invalid_argument(error);
+	}
+
+	Matrix<int> matrix(width, height);
+	this->matrix = matrix;
+	this->mines = mines;
+
+	this->fill();
+}
+
 /* ------------------------- */
 // Private
 /* ------------------------- */
@@ -63,7 +87,7 @@ void Board::fill() {
 	int rows = matrix.getHeight();
 	int cols = matrix.getWidth();
 
-	std::vector<intPair> v = calcMinePos(rows - 1, cols - 1);
+	std::vector<intPair> v = calcMinePos(rows, cols);
 	for (auto coords : v) {
 		board[coords.first][coords.second] = -1;
 	}
@@ -97,16 +121,22 @@ void Board::fill() {
 }
 
 std::vector<intPair> Board::calcMinePos(int rows, int cols) {
-	std::vector<intPair> v;
+	std::vector<intPair> tileVec;
+	std::vector<intPair> mineVec;
 
-	for (int i = 0; i < mines; i++) {
-		int randY = randomIntBetweeen(0, rows);
-		int randX = randomIntBetweeen(0, cols);
-
-		v.push_back(intPair(randY, randX));
+	for (int i = 0; i < rows; i++) {
+		for (int j = 0; j < cols; j++) {
+			tileVec.push_back(intPair(i, j));
+		}
 	}
 
-	return v;
+	for (int i = 0; i < mines; i++) {
+		int rand = randomIntBetweeen(0, tileVec.size() - 1);
+		mineVec.push_back(tileVec[rand]);
+		tileVec.erase(tileVec.begin() + rand);
+	}
+
+	return mineVec;
 }
 
 int Board::randomIntBetweeen(int min, int max) {

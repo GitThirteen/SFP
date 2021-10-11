@@ -15,4 +15,6 @@ int main() {
 		};
 		std::cout << "\n";
 	}
+
+	//std::cout << mineField.getDiff() << std::endl;
 }
