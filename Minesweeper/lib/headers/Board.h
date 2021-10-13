@@ -3,6 +3,7 @@
 #include <vector>
 
 #include "Matrix.h"
+#include "Tile.h"
 
 enum Difficulty { Beginner, Intermediate, Expert, Invalid };
 
@@ -25,8 +26,8 @@ public:
 	* 
 	* @param[in] matrix: A matrix object
 	*/
-	void setMatrix(Matrix<int> matrix);
-	Matrix<int> getMatrix();
+	void setMatrix(Matrix<Tile> matrix);
+	Matrix<Tile> getMatrix();
 	void setMines(int mines);
 
 	/**
@@ -49,7 +50,7 @@ public:
 
 private:
 	Difficulty diff;
-	Matrix<int> matrix;
+	Matrix<Tile> matrix;
 	int mines;
 
 	void fill();

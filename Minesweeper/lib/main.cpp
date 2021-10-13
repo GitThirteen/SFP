@@ -9,9 +9,16 @@ int main() {
 	mineField.generate(Difficulty::Intermediate);
 
 	auto matrix = mineField.getMatrix();
+	auto board = matrix.getBoard();
 	for (int col = 0; col < matrix.getHeight(); col++) {
 		for (int row = 0; row < matrix.getWidth(); row++) {
-			std::cout << matrix.getBoard()[col][row] << " ";
+			if (board[col][row].hasMine()) {
+				std::cout << "X" << " ";
+			}
+			else {
+				std::cout << (int) board[col][row].getMineCount() << " ";
+			}
+			
 		};
 		std::cout << "\n";
 	}

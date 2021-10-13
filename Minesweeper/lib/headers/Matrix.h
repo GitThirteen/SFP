@@ -2,6 +2,8 @@
 
 #include <vector>
 
+#include "headers/Tile.h"
+
 template<typename T>
 using Mat2D = std::vector<std::vector<T>>;
 
@@ -9,12 +11,12 @@ template<typename T>
 class Matrix {
 public:
 	Matrix<T>() {
-		Mat2D<T> matrix(0, std::vector<T>(0, 0));
+		Mat2D<T> matrix(0, std::vector<T>(0, *new Tile()));
 		this->board = matrix;
 	}
 
 	Matrix<T>(int width, int height) {
-		Mat2D<T> matrix(height, std::vector<T>(width, 0));
+		Mat2D<T> matrix(height, std::vector<T>(width, *new Tile()));
 		this->board = matrix;
 	}
 
@@ -31,7 +33,7 @@ public:
 	}
 
 	void setBoard(int x, int y) {
-		Mat2D<T> matrix(y, std::vector<T>(x, 0));
+		Mat2D<T> matrix(y, std::vector<T>(x, *new Tile()));
 		this->board = matrix;
 	}
 

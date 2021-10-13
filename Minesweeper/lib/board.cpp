@@ -1,4 +1,5 @@
 #include "headers/Board.h"
+#include "headers/Utility.h"
 
 #include <iostream>
 #include <vector>
@@ -20,11 +21,11 @@ Difficulty Board::getDiff() {
 	return diff;
 }
 
-void Board::setMatrix(Matrix<int> matrix) {
+void Board::setMatrix(Matrix<Tile> matrix) {
 	this->matrix = matrix;
 }
 
-Matrix<int> Board::getMatrix() {
+Matrix<Tile> Board::getMatrix() {
 	return matrix;
 }
 
@@ -34,12 +35,10 @@ void Board::setMines(int mines) {
 
 void Board::generate(Difficulty diff) {
 	if (diff == Difficulty::Invalid) {
-		std::string error = "Difficulty cannot be set to \"Invalid\"!";
-		std::cerr << error << std::endl;
-		throw new std::invalid_argument(error);
+		Utility::throwError("Difficulty cannot be set to \"Invalid\"!");
 	}
 
-	Matrix<int> matrix;
+	Matrix<Tile> matrix;
 	int mines = 0;
 
 	switch (diff) {
@@ -66,12 +65,10 @@ void Board::generate(Difficulty diff) {
 
 void Board::generate(int width, int height, int mines) {
 	if (mines >= (width * height)) {
-		std::string error = "Mines greater or equal board size.";
-		std::cerr << error << std::endl;
-		throw new std::invalid_argument(error);
+		Utility::throwError("Mines greater or equal board size.");
 	}
 
-	Matrix<int> matrix(width, height);
+	Matrix<Tile> matrix(width, height);
 	this->matrix = matrix;
 	this->mines = mines;
 
@@ -89,12 +86,12 @@ void Board::fill() {
 
 	std::vector<intPair> v = calcMinePos(rows, cols);
 	for (auto coords : v) {
-		board[coords.first][coords.second] = -1;
+		board[coords.first][coords.second].setMine(true);
 	}
 
 	for (int row = 0; row < rows; row++) {
 		for (int col = 0; col < cols; col++) {
-			if (board[row][col] == -1) {
+			if (board[row][col].hasMine()) {
 				continue;
 			}
 
@@ -107,13 +104,13 @@ void Board::fill() {
 						continue;
 					}
 
-					if (board[y][x] == -1) {
+					if (board[y][x].hasMine()) {
 						counter++;
 					}
 				}
 			}
 
-			board[row][col] = counter;
+			board[row][col].setMineCount(counter);
 		}
 	}
 
