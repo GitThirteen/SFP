@@ -22,8 +22,7 @@ void Tile::setMine(bool mine) {
 		this->bitMask |= (1UL << 2);
 	}
 	else {
-		uint8_t inverted = ~(1UL << 2);
-		this->bitMask &= inverted;
+		this->bitMask &= ~(1UL << 2);
 	}
 }
 bool Tile::hasMine() {
@@ -35,8 +34,7 @@ void Tile::setFlag(bool flag) {
 		this->bitMask |= (1UL << 1);
 	}
 	else {
-		uint8_t inverted = ~(1UL << 1);
-		this->bitMask &= inverted;
+		this->bitMask &= ~(1UL << 1);
 	}
 }
 bool Tile::hasFlag() {

@@ -95,7 +95,7 @@ void Board::fill() {
 				continue;
 			}
 
-			int counter = 0;
+			uint8_t counter = 0;
 			for (int x = col - 1; x <= col + 1; ++x) {
 				for (int y = row - 1; y <= row + 1; ++y) {
 					if ((x < 0 || x >= cols) || 

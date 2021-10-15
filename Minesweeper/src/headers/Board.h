@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <stdint.h>
 
 #include "Matrix.h"
 #include "Tile.h"
