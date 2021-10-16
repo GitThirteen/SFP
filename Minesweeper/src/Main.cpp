@@ -2,9 +2,9 @@
 
 #include <iostream>
 
-#define GLFW_INCLUDE_NONE
-#include <GLFW/glfw3.h>
+#define GLEW_STATIC
 #include <GL/glew.h>
+#include <GLFW/glfw3.h>
 
 #include "headers/Board.h"
 #include "headers/Utility.h"
@@ -24,7 +24,7 @@ int main() {
 		Utility::throwError("GLFW init failed.");
 	}
 
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
@@ -55,4 +55,22 @@ int main() {
 	/* ------------------------- */
 	// RENDER GO BRRRRR
 	/* ------------------------- */
+
+	while (!glfwWindowShouldClose(window)) {
+		glClearColor(255, 255, 255, 1);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		
+		
+
+		glfwSwapBuffers(window);
+	}
+
+	/* ------------------------- */
+	// EXIT
+	/* ------------------------- */
+
+	glfwDestroyWindow(window);
+	glfwTerminate();
+
+	return EXIT_SUCCESS;
 }
