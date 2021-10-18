@@ -1,9 +1,17 @@
-use portaudio;
+use cpal::traits::{ DeviceTrait as dt, HostTrait as ht };
 
-fn main() {
-    let port = portaudio::PortAudio::new().expect("Unable to initialize PortAudio.");
+mod provider;
 
-    let out_index = port.default_output_device().expect("Unable to get default output device.");
-    let out = port.device_info(out_index).expect("No device could be found.");
-    println!("{}", out.name);
+fn main() -> Result<(), ()> {
+    let provider = provider::Provider::new();
+
+    let host = provider.get_host();
+    let device = provider.get_device();
+    let sup_config = provider.get_sup_config();
+
+    println!("{}", device.name().unwrap());
+
+    // TODO
+    
+    return Ok(());
 }
