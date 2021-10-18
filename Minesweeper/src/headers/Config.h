@@ -6,8 +6,8 @@
 class Config {
 private:
 	std::string GAME_TITLE = "Minesweeper";
-	uint16_t WINDOW_WIDTH = 400;
-	uint16_t WINDOW_HEIGHT = 400;
+	uint16_t TILE_SIZE = 20;
+	uint16_t BORDER = 100;
 
 	Config() { }
 
@@ -19,8 +19,8 @@ public:
 	}
 
 	std::string gameTitle() { return GAME_TITLE; }
-	uint16_t windowWidth() { return WINDOW_WIDTH; }
-	uint16_t windowHeight() { return WINDOW_HEIGHT; }
+	uint16_t tileSize() { return TILE_SIZE; }
+	uint16_t border() { return BORDER; }
 
 	// Config(Config const&)			= delete;
 	// void operator=(Config const&)	= delete;

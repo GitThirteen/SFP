@@ -9,12 +9,13 @@
 #include "headers/Board.h"
 #include "headers/Utility.h"
 #include "headers/Config.h"
+#include "headers/Scene.h"
 
 int main() {
 	Config CONFIG = Config::get();
 
 	Board mineField;
-	mineField.generate(Difficulty::Intermediate);
+	mineField.generate(Difficulty::Expert);
 
 	/* ------------------------- */
 	// GLFW INIT
@@ -30,8 +31,8 @@ int main() {
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 	GLFWwindow* window = glfwCreateWindow(
-		CONFIG.windowWidth(),
-		CONFIG.windowHeight(),
+		mineField.getMatrix().getWidth() * CONFIG.tileSize() + CONFIG.border(),
+		mineField.getMatrix().getHeight() * CONFIG.tileSize() + CONFIG.border(),
 		CONFIG.gameTitle().c_str(),
 		NULL,
 		NULL
@@ -56,13 +57,11 @@ int main() {
 	// RENDER GO BRRRRR
 	/* ------------------------- */
 
-	while (!glfwWindowShouldClose(window)) {
-		glClearColor(255, 255, 255, 1);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		
-		
+	Scene scene(window);
 
-		glfwSwapBuffers(window);
+	while (!glfwWindowShouldClose(window)) {
+		scene.clear();
+		scene.render();
 	}
 
 	/* ------------------------- */
