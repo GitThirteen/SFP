@@ -50,4 +50,4 @@ A Minesweeper clone written in C++ and OpenGL.
 IMAGE COMING SOON
 
 ## License
-Feel free to reuse all apps in this repository in accordance with the [MIT License], even if the subfolder doesn't contain it per se. Though I am not sure why you would want to reuse any of this in the first place, like, it's pretty bad.
+Feel free to reuse all apps in this repository in accordance with the [MIT License](https://github.com/GitThirteen/sandbox/blob/main/LICENSE), even if the subfolder doesn't contain it per se. Though I am not sure why you would want to reuse any of this in the first place, like, it's pretty bad.
