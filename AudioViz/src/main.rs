@@ -14,20 +14,37 @@ fn main() -> Result<(), cpal::PlayStreamError> {
     let sup_config = provider.get_sup_config();
     let config = sup_config.config();
 
+    //let config = cpal::StreamConfig {
+    //    channels: 2,
+    //    buffer_size: cpal::BufferSize::Default,
+    //    sample_rate: cpal::SampleRate(44100)
+    //};
+
+    println!("Host: {}", host.id().name());
     println!("Output device: {}", device.name().unwrap());
+    println!("Config > Channels: {}", config.channels);
+    println!("Config > Buffer Size: {:?}", config.buffer_size);
+    println!("Config > Sample Rate: {:?}", config.sample_rate);
 
     let (zender, receiver) = channel();
-    static mut sender: Option<std::sync::mpsc::Sender<Vec<f32>>> = None;
+    static mut sender: Option<Sender<f32>> = None; // Vector<f32>
     unsafe {
         sender = Some(zender);
     }
 
-    fn data_cb(data: &[f32], _: &cpal::InputCallbackInfo) {
-        let d = data.to_owned();
-        unsafe {
+    fn data_cb(data: &[f32], _: &InputCallbackInfo) {
+        //let d = data.to_owned();
+
+        for &sample in data {
+            unsafe {
+                sender.as_ref().unwrap().send(sample).ok();
+            }
+        }
+
+        /*unsafe {
             println!("Length: {}", d.len());
             sender.as_ref().unwrap().send(d).expect("I dunno what to expect anymore.");
-        }
+        }*/
     }
 
     fn err_cb(err: StreamError) {
@@ -41,15 +58,18 @@ fn main() -> Result<(), cpal::PlayStreamError> {
         err_cb
     );
 
-    stream.unwrap().play()?;
-
-    loop {
-        let data = receiver.recv().unwrap();
-        if data.len() == 0 {
-            println!("EMPTY");
+    match stream {
+        Ok(_) => {
+            stream.unwrap().play()?;
+            println!("Building stream...");
         }
-        println!("{:?}", data);
+        Err(_) => {
+            println!("Error: Stream unable to start!");
+        }
     }
+
+    let data = receiver.try_recv().unwrap();
+    println!("{:?}", data);
 
     return Ok(());
 }
